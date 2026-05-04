@@ -11,7 +11,21 @@ export default function Friend({ friend, selected, setSelected }: FriendProps) {
       />
       <div className="friendDetails">
         <h2>{friend.name}</h2>
-        <p>{friend.debt}</p>
+        <p
+          style={
+            (friend.debt ?? 0) > 0
+              ? { color: "lightGreen" }
+              : (friend.debt ?? 0) < 0
+                ? { color: "red" }
+                : { color: "gray" }
+          }
+        >
+          {(friend.debt ?? 0) > 0
+            ? `${friend.name} owes you $${friend.debt}.`
+            : (friend.debt ?? 0) < 0
+              ? `You owe ${friend.name} $${Math.abs(friend.debt ?? 0)}.`
+              : `You and ${friend.name} are even.`}
+        </p>
       </div>
       {selected !== friend.name ? (
         <button onClick={() => setSelected(friend.name)}>Select</button>

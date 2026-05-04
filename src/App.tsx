@@ -21,6 +21,7 @@ export type DashboardProps = {
 export type BillSplitProps = {
   friendsList: FriendType[];
   selected: string | null;
+  setFriendsList: React.Dispatch<React.SetStateAction<FriendType[]>>;
 };
 
 export type FriendProps = {
@@ -88,7 +89,13 @@ export default function App() {
           <button type="submit">Submit</button>
         </form>
       )}
-      {selected && <BillSplit selected={selected} friendsList={friendsList} />}
+      {selected && (
+        <BillSplit
+          selected={selected}
+          friendsList={friendsList}
+          setFriendsList={setFriendsList}
+        />
+      )}
     </div>
   );
 }
